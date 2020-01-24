@@ -29,7 +29,7 @@ class mymapa {
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap);
             
                 data.forEach( item => {
-                    item.estudiante = L.marker([ item.longitud, item.latitud ]).bindPopup( item.descripcion );
+                    item.estudiante = L.marker([ item.longitud, item.latitud ]).bindPopup( item.casa );
                     const ubicaciones = L.layerGroup([ item.estudiante]).addTo(mymap);
                 })
             }
