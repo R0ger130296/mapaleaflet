@@ -1,0 +1,19 @@
+{
+    "ubicaciones": [
+        {
+            "estudiante": "Johao",
+            "longitud": -0.220071,
+            "latitud": -78.506284
+        },
+        {
+            "estudiante": "Juan",
+            "longitud": -0.0960491,
+            "latitud": -78.3062059
+        },
+        {
+            "estudiante": "Roger",
+            "longitud": -0.083019,
+            "latitud": -78.495852
+        }
+    ]
+}
