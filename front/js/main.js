@@ -1,5 +1,5 @@
 class mymapa {
-    getStudents = () => {
+    estudiantes = () => {
         const http = new XMLHttpRequest();
         const API_URL = "http://localhost:3000/estudiantes";
 
@@ -41,4 +41,7 @@ const mostrar = new mymapa();
 
 points = () => {
     return mostrar.points();
+}
+estudiantes = () => {
+    return mostrar.estudiantes();
 }
