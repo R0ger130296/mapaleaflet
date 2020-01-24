@@ -1,26 +1,44 @@
-const http = new XMLHttpRequest();
+class mymapa {
+    getStudents = () => {
+        const http = new XMLHttpRequest();
+        const API_URL = "http://localhost:3000/estudiantes";
 
-const API_URL = "http://localhost:3000/estudiantes";
-
-mapa = () => {
-    http.open('GET', API_URL);
-    http.send();
-    http.onload = () => {
-        if (http.status === 200) {    
-            const datos = (http.response);
-            console.log(datos)
+        http.open('GET', API_URL);
+        http.send();
+        http.onload = () => {
+            if (http.status === 200) {    
+                const datos = JSON.parse(http.response);
+                alert(JSON.stringify(datos))
+                return datos;
+            }
         }
     }
 
-    const quito = [ -0.178810, -78.468893]
+    points = () => {
+        const http = new XMLHttpRequest();
+        const API_URL = "http://localhost:3000/estudiantes";
+        
+        http.open('GET', API_URL);
+        http.send();
+        http.onload = () => {
+            if (http.status === 200) {    
+                const data = JSON.parse(http.response);
+                const quito = [ -0.178810, -78.468893]
+                const mymap = L.map('mapa', { zoom: 12, center: quito });
+                
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap);
+            
+                data.forEach( item => {
+                    item.estudiante = L.marker([ item.longitud, item.latitud ]).bindPopup( item.descripcion );
+                    const ubicaciones = L.layerGroup([ item.estudiante]).addTo(mymap);
+                })
+            }
+        }
+    }
+}
 
-    const mymap = L.map('mapa', { zoom: 11, center: quito });
-    
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap);
-    
-    const juan = L.marker([-0.0960491, -78.3062059]).bindPopup("Casa Juanito"),
-        johao = L.marker([-0.220071, -78.506284]).bindPopup("Casa Johao"),
-        roger=L.marker([-0.083019, -78.495852]).bindPopup("Casa Roger");
+const mostrar = new mymapa();
 
-    const ubicacionCaidas = L.layerGroup([juan, johao,roger]).addTo(mymap);
+points = () => {
+    return mostrar.points();
 }
